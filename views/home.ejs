@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<% include ./partials/head %>
+
+<body class="text-center">
+    <div class="containter">
+        <header
+            class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-body border-bottom shadow-sm">
+            <p class="h5 my-0 me-md-auto fw-normal">Company name</p>
+            <% if (user) { %>
+                <nav class="my-2 my-md-0 me-md-3">
+                    Welcome <a href="#" class="p-2 text-dark">
+                        <%- user %>
+                    </a>
+                </nav>
+                <a class="btn btn-outline-primary" href="/users/logout">Logout</a>
+                <% } else { %>
+                    <nav class="my-2 my-md-0 me-md-3">
+                        <a class="btn btn-outline-primary" href="/users/login">Sign in</a>
+                    </nav>
+                    <a class="btn btn-outline-primary" href="/users/create-user">Sign up</a>
+                    <% } %>
+        </header>
+    </div>
+
+    <h1>Home page</h1>
+    <div class="container">
+        <form method="POST" action="/users/home">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search city" aria-label="search"
+                    aria-describedby="search" name="search">
+                <button class="btn btn-primary" type="submit" id="search">Search</button>
+            </div>
+        </form>
+
+        <% if (data) { %>
+            <div class="row">
+                
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"><%- city %>'s weather is</h5>
+                                <p><%- JSON.stringify(data.weather[0].description) %></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+            </div>
+            <% } %>
+    </div>
+
+    <% include ./partials/script %>
+
+</body>
+
+</html>
