@@ -43,7 +43,7 @@ router.post("/home", async function (req, res) {
     try {
       let result = await axios.get(
         
-        `http://api.openweathermap.org/data/2.5/weather?q=${req.body.search}&appid=18b8538e5eb115cc2512b683ed9f15cf`
+        `http://api.openweathermap.org/data/2.5/weather?q=${req.body.search}&appid=${WEATHER_API_KEY}`
         
       );
       console.log(result.data);
